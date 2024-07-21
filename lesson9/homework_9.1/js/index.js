@@ -16,21 +16,19 @@ let company = {
 
 function sumSalaries(department) {
   if (Array.isArray(department)) {
-    var sum = 0;
-    for (var i = 0; i < department.length; i++) {
+    let sum = 0;
+    for (let i = 0; i < department.length; i++) {
       sum += department[i].salary;
     }
     return sum;
   } else {
-    var sum = 0;
-    for (var key in department) {
-      if (department.hasOwnProperty(key)) {
+    let sum = 0;
+    for (let key in department) { 
         sum += sumSalaries(department[key]);
-      }
     }
     return sum;
   }
 }
 
-var totalSalary = sumSalaries(company);
+let totalSalary = sumSalaries(company);
 console.log(totalSalary);
