@@ -2,7 +2,10 @@ const user = {
   firstName: 'Tania',
   age: 19,
   city: 'Kharkiv',
+
+  getInfo: function() {
+    return `Name: ${this.firstName}, Age: ${this.age}, City: ${this.city}`;
+  }
 };
 
-const values = Object.values(user);
-console.log(values);
+console.log(user.getInfo());
