@@ -2,6 +2,14 @@ const taskInput = document.querySelector('.form__input');
 const taskList = document.querySelector('.js--todos-wrapper');
 const addTaskButton = document.querySelector('.form__btn');
 
+function loadTasks() {
+    return JSON.parse(localStorage.getItem('tasks')) || [];
+}
+
+function saveTasks(tasks) {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
 function addTask(taskText, checked = false) {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
@@ -30,10 +38,13 @@ function addTask(taskText, checked = false) {
     taskList.appendChild(li);
 }
 
-function handleAddTaskButtonClick(event) {
+function handleAddTaskButtonClick() {
     const taskText = taskInput.value.trim();
     if (taskText !== "") {
         addTask(taskText);
+        const tasks = loadTasks();
+        tasks.push({ text: taskText, checked: false }); 
+        saveTasks(tasks); 
         taskInput.value = "";
     }
 }
@@ -46,40 +57,35 @@ function checkedTask(checkbox, li) {
     } else {
         li.classList.remove('todo-item--checked');
     }
-    saveTasks();
+    const tasks = loadTasks();
+    const taskIndex = Array.from(taskList.children).indexOf(li);
+    if (taskIndex !== -1) {
+        tasks[taskIndex].checked = checkbox.checked;
+        saveTasks(tasks);
+    }
 }
 
 function handleTaskListClick(event) {
     if (event.target.tagName === "BUTTON") {
-      const li = event.target.parentElement;
-      taskList.removeChild(li);
-      saveTasks();  
+        const li = event.target.parentElement;
+        const tasks = loadTasks();
+        const taskIndex = Array.from(taskList.children).indexOf(li);
+        if (taskIndex !== -1) {
+            tasks.splice(taskIndex, 1);
+            saveTasks(tasks);
+        }
+        taskList.removeChild(li); 
     }
 }
-  
+
 taskList.addEventListener("click", handleTaskListClick);
 
 function initializeExistingTasks() {
     taskList.innerHTML = '';
-
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const tasks = loadTasks();
     tasks.forEach(function(task) {
         addTask(task.text, task.checked);
     });
-}
-
-function saveTasks() {
-    const tasks = [];
-    const items = taskList.querySelectorAll('li');
-    items.forEach(function(item) {
-        const checkbox = item.querySelector('input[type="checkbox"]');
-        const text = item.querySelector('.todo-item__description').textContent;
-        tasks.push({
-            text: text,
-            checked: checkbox.checked
-        });
-    });
-    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 initializeExistingTasks();
