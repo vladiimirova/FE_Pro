@@ -26,22 +26,28 @@ function Student(firstName, lastName, birthYear, grades) {
     }
 
     this.present = function() {
-        const nextIndex = this.attendance.indexOf(undefined);
-        if (nextIndex !== -1) {
-            this.attendance[nextIndex] = true;
-        } else {
-            console.log("Усі заняття вже відзначені.");
+        for (let i = 0; i < this.attendance.length; i++) {
+            if (this.attendance[i] === undefined) {
+                this.attendance[i] = true;
+                console.log(`Відмічено присутність на занятті №${i + 1}`);
+                return;
+            }
         }
+        console.log("Усі заняття вже відзначені.");
     };
-
+    
     this.absent = function() {
-        const nextIndex = this.attendance.indexOf(undefined);
-        if (nextIndex !== -1) {
-            this.attendance[nextIndex] = false;
-        } else {
-            console.log("Усі заняття вже відзначені.");
+        for (let i = 0; i < this.attendance.length; i++) {
+            if (this.attendance[i] === undefined) {
+                this.attendance[i] = false;
+                console.log(`Відмічено відсутність на занятті №${i + 1}`);
+                return;
+            }
         }
+        console.log("Усі заняття вже відзначені.");
     };
+    
+    
 
     this.summary = function() {
         const averageGrade = this.getAverageGrade();
