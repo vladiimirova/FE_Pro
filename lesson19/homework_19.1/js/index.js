@@ -1,5 +1,5 @@
 const apiKey = "e917ec57d65838355c517ea9193436de"; 
-const city = "Kyiv";
+const city = "Lisbon";
 const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
 async function fetchWeather() {
@@ -18,13 +18,21 @@ async function fetchWeather() {
         document.querySelector('.humidity').innerText = `Humidity: ${data.main.humidity}%`;
         document.querySelector('.wind').innerText = `Wind speed: ${data.wind.speed} m/s`;
 
-        const now = new Date();
-        document.querySelector('.date').innerText = now.toLocaleDateString();
-        document.querySelector('.time').innerText = now.toLocaleTimeString();
-        
+        const timezoneOffset = data.timezone; 
+        updateDateTime(timezoneOffset);
+
     } catch (error) {
         console.error('Error fetching weather data:', error);
     }
+}
+
+function updateDateTime(timezoneOffset) {
+    const nowUTC = new Date(); 
+    const utcTime = nowUTC.getTime() + (nowUTC.getTimezoneOffset() * 60000); 
+    const localTime = new Date(utcTime + timezoneOffset * 1000); 
+
+    document.querySelector('.date').innerText = localTime.toLocaleDateString();
+    document.querySelector('.time').innerText = localTime.toLocaleTimeString();
 }
 
 fetchWeather();
