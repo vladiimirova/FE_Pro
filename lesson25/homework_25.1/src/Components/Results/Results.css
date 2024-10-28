@@ -1,0 +1,26 @@
+.btn-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.results-button {
+    margin-right: 20px;
+    background-color: green;
+    padding: 15px;
+    font-size: 15px;
+    border-radius: 10px;
+    color: white;
+    border: none;
+}
+
+.winners {
+    font-size: 20px;
+}
+
+h2 {
+    font-size: 26px;
+}
+
+h3 {
+    font-size: 20px;
+}
