@@ -1,0 +1,55 @@
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  position: relative; 
+}
+
+.icon {
+  position: absolute; 
+  top: 53%; 
+  transform: translateY(-50%); 
+  font-size: 18px; 
+}
+
+.sun {
+  left: 13px; 
+  color: yellow; 
+}
+
+.moon {
+  left: 32px; 
+  color: white; 
+}
+
+.MuiSwitch-thumb {
+  width: 40px; 
+  height: 40px; 
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  background-color: rgb(11, 180, 253) !important; 
+  border-radius: 50%; 
+  transition: background-color 0.3s ease;
+}
+
+.Mui-checked .MuiSwitch-thumb {
+  background-color: rgb(24, 32, 91) !important; 
+}
+
+.css-tj8d99-MuiSwitch-track {
+  background-color: rgb(11, 180, 253) !important;
+}
+
+.css-14er540-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
+  background-color: rgb(24, 32, 91) !important;
+}
+
+.css-rehya9-MuiSwitch-root {
+  width: 65px !important; 
+  height: 40px !important;
+}
+
+.css-17jyosd-MuiSwitch-thumb {
+  width: 25px !important;
+  height: 25px !important;
+}

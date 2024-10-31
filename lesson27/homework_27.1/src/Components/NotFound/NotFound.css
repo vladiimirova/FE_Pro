@@ -1,0 +1,9 @@
+.img-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.error {
+    width: 930px;
+    height: auto;
+}
