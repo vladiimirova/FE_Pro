@@ -1,0 +1,33 @@
+.header {
+    background-color: rgba(150, 150, 150, 0.685);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode .header {
+    background-color: rgba(50, 50, 50, 0.85);
+    color: white;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.header-list {
+    display: flex;
+    gap: 20px; 
+}
+
+.header-item {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+body.dark-mode .header-item {
+    color: white;
+}
